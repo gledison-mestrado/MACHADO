@@ -38,7 +38,9 @@ mkdir ./data/pgdata
 mkdir ./data/ecdata
 mkdir ./data/jbdata
 
-edit o .env with user of the database and user use machado usuario do banco e usuario de uso do machado
+*** EDIT .env
+
+edit o .env with user of the database and user use machado 
 
 UID=1000
 USER=machado
@@ -54,8 +56,10 @@ MACHADO_PROJECT=machadosample
 vm.max_map_count=262144
 
 *** RESTART MACHINE
+
 init 6
 
 *** START MACHADO
+
 cd machado-docker
 nohup docker-compose up --build --force-recreate &
