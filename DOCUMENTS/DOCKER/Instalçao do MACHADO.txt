@@ -1,0 +1,56 @@
+criar container
+
+docker run -itd --name ubuntuV01 ubuntu
+
+Ver o codigo de de reinderação do container
+
+docker inspect ubuntuV01
+docker inspect ubuntu | grep Image
+
+***instalar docker
+curl -fsSL https://get.docker.com -o get_docker.sh; chmod +x get_docker.sh; ./get_docker.sh
+usermod -aG docker $USER
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+docker-compose
+
+root@machado:~# mkdir docker
+root@machado:~# chmod 775 docker/
+root@machado:~# cd docker/
+root@machado:~/docker# mkdir machado
+root@machado:~/docker# chmod 775 machado/
+root@machado:~/docker# cd  machado
+root@machado:~/docker/machado#
+
+*** copiar o conteudo do githb fazendo uma copia/clone no hostname
+git clone https://github.com/lmb-embrapa/machado-docker.git
+
+root@machado:~/docker/machado/machado-docker# ls -lth
+total 60K
+-rw-r--r-- 1 root root 1.5K Mar 12 01:54 docker-compose.yml
+drwxr-xr-x 4 root root 4.0K Mar 12 01:54 images
+-rw-r--r-- 1 root root 1.2K Mar 12 01:54 load_machadosample.sh
+drwxr-xr-x 3 root root 4.0K Mar 12 01:54 data
+-rw-r--r-- 1 root root  35K Mar 12 01:54 LICENSE
+-rw-r--r-- 1 root root 4.2K Mar 12 01:54 README.md
+root@machado:~/docker/machado/machado-docker#
+
+usermod -aG docker $USER
+
+*** startar a instancia chado
+
+mkdir ./data/pgdata
+mkdir ./data/ecdata
+mkdir ./data/jbdata
+
+editar o .env com usuario do banco e usuario de uso do machado
+
+acertar a memoria
+/etc/sysctl.conf
+
+docker-compose up --build --force-recreate
+
+subir os dados
+
+docker-compose exec machado python manage.py load_relations_ontology --file data/sample/ontologies/ro.obo
+docker-compose exec machado python manage.py rebuild_index

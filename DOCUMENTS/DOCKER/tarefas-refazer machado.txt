@@ -1,0 +1,319 @@
+introduçao a bioinformatica
+seminarios I
+topicos basicos em biotecnologia: ciencias Biologicas I
+
+17 vai embora e ve de casa
+
+
+docker stop tab container
+docker rm 
+docker rmi
+
+apagar pasta machado
+
+docker pull
+
+GFF
+
+mandar lates fabiano
+
+4 cursos docker
+gtf gff
+paper paradb
+
+[18:05, 02/03/2021] Fabiano Menegidio: http://www.umc.br/pos/stricto-sensu/biotecnologia.html
+
+[18:23, 02/03/2021] Fabiano Menegidio: https://en.wikipedia.org/wiki/General_feature_format
+
+[18:23, 02/03/2021] Fabiano Menegidio: https://m.ensembl.org/info/website/upload/gff3.html
+
+[18:23, 02/03/2021] Fabiano Menegidio: https://www.ensembl.org/info/website/upload/gff.html
+
+http://gmod.org/wiki/GFF3
+https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0007576
+
+5000 livre
+
+04-03
+acompanhamento publicação David
+galaxy europe ferramenta para mexer dados bigdata
+solicitar usuarios e senhas fabiano driver lab
+
+at al., vem do latim uma ligua morta
+lingua diferente da nossa lingua, usa et al., e PRECISA estar em italico
+sempre que usamos ref em outras linguas usar o at al ITALICO
+
+Duvidas
+INFERNAL
+en tap
+
+ate 3000 palavras
+
+user github
+ab3c
+
+Atividade,
+
+Stop containers
+Rm images
+download images
+start containers
+
+sudo su - machado
+docker ps
+docker images
+
+docker-compose up --build --force-recreate
+docker-compose down
+
+machado@menegidio-test:~$ docker-compose --help
+Define and run multi-container applications with Docker.
+
+Usage:
+  docker-compose [-f <arg>...] [--profile <name>...] [options] [--] [COMMAND] [ARGS...]
+  docker-compose -h|--help
+
+Options:
+  -f, --file FILE             Specify an alternate compose file
+                              (default: docker-compose.yml)
+  -p, --project-name NAME     Specify an alternate project name
+                              (default: directory name)
+  --profile NAME              Specify a profile to enable
+  -c, --context NAME          Specify a context name
+  --verbose                   Show more output
+  --log-level LEVEL           Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  --ansi (never|always|auto)  Control when to print ANSI control characters
+  --no-ansi                   Do not print ANSI control characters (DEPRECATED)
+  -v, --version               Print version and exit
+  -H, --host HOST             Daemon socket to connect to
+
+  --tls                       Use TLS; implied by --tlsverify
+  --tlscacert CA_PATH         Trust certs signed only by this CA
+  --tlscert CLIENT_CERT_PATH  Path to TLS certificate file
+  --tlskey TLS_KEY_PATH       Path to TLS key file
+  --tlsverify                 Use TLS and verify the remote
+  --skip-hostname-check       Don't check the daemon's hostname against the
+                              name specified in the client certificate
+  --project-directory PATH    Specify an alternate working directory
+                              (default: the path of the Compose file)
+  --compatibility             If set, Compose will attempt to convert keys
+                              in v3 files to their non-Swarm equivalent (DEPRECATED)
+  --env-file PATH             Specify an alternate environment file
+
+Commands:
+  build              Build or rebuild services
+  config             Validate and view the Compose file
+  create             Create services
+  down               Stop and remove resources
+  events             Receive real time events from containers
+  exec               Execute a command in a running container
+  help               Get help on a command
+  images             List images
+  kill               Kill containers
+  logs               View output from containers
+  pause              Pause services
+  port               Print the public port for a port binding
+  ps                 List containers
+  pull               Pull service images
+  push               Push service images
+  restart            Restart services
+  rm                 Remove stopped containers
+  run                Run a one-off command
+  scale              Set number of containers for a service
+  start              Start services
+  stop               Stop services
+  top                Display the running processes
+  unpause            Unpause services
+  up                 Create and start containers
+  version            Show version information and quit
+machado@menegidio-test:~$
+
+cd machado-docker
+docker-compose down 
+machado@menegidio-test:~/machado-docker$ docker-compose down
+Stopping machado_container     ... done
+Stopping machado_elasticsearch ... done
+Stopping machado_postgres      ... done
+Removing machado_container     ... done
+Removing machado_elasticsearch ... done
+Removing machado_postgres      ... done
+docker-compose up --build --force-recreate
+
+machado@menegidio-test:~/machado-docker$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+machado@menegidio-test:~/machado-docker$ docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+machado-docker_machado         latest              868ed491d4af        5 days ago          1.26GB
+machado-docker_elasticsearch   latest              847fb7fe0dfe        5 days ago          590MB
+postgres                       12                  85f1c84fe307        2 weeks ago         314MB
+openjdk                        8                   9324460525ca        3 weeks ago         514MB
+ubuntu                         bionic              c090eaba6b94        6 weeks ago         63.3MB
+
+docker rmi -f machado-docker_machado
+docker rmi -f machado-docker_elasticsearch
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+postgres            12                  85f1c84fe307        2 weeks ago         314MB
+openjdk             8                   9324460525ca        3 weeks ago         514MB
+ubuntu              bionic              c090eaba6b94        6 weeks ago         63.3MB
+docker rmi -f 85f1c84fe307        
+docker rmi -f 9324460525ca        
+docker rmi -f c090eaba6b94        
+                                         
+machado@menegidio-test:~/machado-docker$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+root@menegidio-test:/var/lib/docker/containers# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+root@menegidio-test:/var/lib/docker/containers#
+
+git clone https://github.com/lmb-embrapa/machado-docker.git
+
+docker-compose up --build --force-recreate
+
+problema de espaço em disco
+
+<none>                         <none>              c49634dbde9b        6 minutes ago       116MB
+machado-docker_elasticsearch   latest              44a32f575dbb        7 minutes ago       590MB
+ubuntu                         bionic              329ed837d508        25 hours ago        63.3MB
+postgres                       12                  85f1c84fe307        2 weeks ago         314MB
+openjdk                        8                   9324460525ca        3 weeks ago         514MB
+
+
+docker rmi -f c49634dbde9b        
+docker rmi -f 44a32f575dbb        
+docker rmi -f 329ed837d508        
+docker rmi -f 85f1c84fe307        
+docker rmi -f 9324460525ca     
+
+limpea de volumes
+
+docker volume rm $(docker volume ls -qf dangling=true)
+
+root@menegidio-test:/var/lib/docker/overlay2# docker volume ls
+DRIVER              VOLUME NAME
+local               b6e2051ec29ed306bfda53553925b9c360e4a794551f0eb7852ad7b85a78a0a8
+root@menegidio-test:/var/lib/docker/overlay2# docker volume rm $(docker volume ls -qf dangling=true)
+b6e2051ec29ed306bfda53553925b9c360e4a794551f0eb7852ad7b85a78a0a8
+
+limpeza do /var/lib/docker/overlay2
+
+docker system prune --all --volumes --force
+estudar o comando acima
+
+
+root@menegidio-test:/var/lib/docker/overlay2# sudo su - machado
+machado@menegidio-test:~$ cd machado-docker/
+machado@menegidio-test:~/machado-docker$
+
+docker-compose up --build --force-recreate
+
+ver o que foi criado na /var/lib/docker/overlay2/
+Excluindo arquivos de log docker
+find /var/lib/docker/containers/ -type f -name “*.log” -delete
+
+arquivos criados na data de hj
+
+root@menegidio-test:/var/lib/docker/overlay2# ls -ltrh
+total 236K
+drwx------ 3 root root 4.0K Mar  4 22:43 b2370b2ca0f9270114f97772562be66d99711ef04d9fed0f947063f921e8656d
+drwx------ 4 root root 4.0K Mar  4 22:44 2cd471ec938ee781ea683292152c70ac45db107e618728bb6135fc2b5c4d6c83
+drwx------ 4 root root 4.0K Mar  4 22:44 09fcce637199264e838868b704cfdb1594dda0455f02dfcfb9e1729b3eaf1546
+drwx------ 4 root root 4.0K Mar  4 22:44 ad0cf3448c5b802863047008f1c8be2282747513217bc65f491aff5ecf5c652f
+drwx------ 4 root root 4.0K Mar  4 22:44 41a74d7aaac223e7f9d0a9fe40e72dae3789a6a3751d5879ca8e528bb7b95859
+drwx------ 4 root root 4.0K Mar  4 22:44 2d604be834263fe14122a8ad0fd0f5ae8ded232cc0b75abae688fb78ff07037d
+drwx------ 4 root root 4.0K Mar  4 22:44 09a3fba6ef1241b6aa06e6323177517226c7638ae01633cde21be67bef94fcd0
+drwx------ 4 root root 4.0K Mar  4 22:44 c2567edc6ffa40bf61e44c23728b31786aad6ea1311e598b6e7a3d7652d66fcb
+drwx------ 4 root root 4.0K Mar  4 22:44 5be44301f8fd2b8b1e86cd5b52e017617c24bc631f612918d3e326dc56b14213
+drwx------ 4 root root 4.0K Mar  4 22:45 54e80f80bbce11be671159155c1a45c23e207739f6a0fdeea23f94bfaa76a6cd
+drwx------ 4 root root 4.0K Mar  4 22:45 645774d9ce22dbb960e4f81426abaf66166cb40f9c6b87e5148c9a41202981db
+drwx------ 4 root root 4.0K Mar  4 22:45 c082fafba1d795f2ba8ddcd27575bdf3584b2fbabbed19b656554d757ff18699
+drwx------ 4 root root 4.0K Mar  4 22:45 0fdd0a4f8ec94078a653355401e7927674918185ad605fa273eab8abaf9b550d
+drwx------ 4 root root 4.0K Mar  4 22:45 341414d80fd2c480fd1ba47d3dca377e21a452ffa2647925ad435a346b5a73f4
+drwx------ 3 root root 4.0K Mar  4 22:45 53df4edaea980d03e32f007229fc6f3b6c26d4588e85516c5f9ac2f5c29168d3
+drwx------ 4 root root 4.0K Mar  4 22:46 ba90cfd7e52e822847a4c969038c2acb17da9c9334777c100c0d91ae7c21527a
+drwx------ 4 root root 4.0K Mar  4 22:46 7bc9732c07c6613087b2997389dd899910421bb94389c897b1fc34bcc9fdf781
+drwx------ 4 root root 4.0K Mar  4 22:46 1c90874e53eb7e494a6776574e6272e7247633aeb0e888d688585ecab839a609
+drwx------ 4 root root 4.0K Mar  4 22:47 39440dc8e0264e8bc16865a6f60d0cbeaf361dfc2e7cee0bc1565ce093420650
+drwx------ 4 root root 4.0K Mar  4 22:47 9d746e971effc8c31077121410911101c86be232fd44e636799729a1e12e7882
+drwx------ 4 root root 4.0K Mar  4 22:47 862474dbd316fa627d3fe4ae136c7361369a3c2f857f76d8727cf54a12b1b296
+drwx------ 4 root root 4.0K Mar  4 22:48 d32e8c48211c92181ec19ee24e1d7f189696fdfaa2bb9e65344cc84e35bbaac2
+drwx------ 4 root root 4.0K Mar  4 22:48 010d95da345565d1afe88033c73f301f3aa444a8de078b6e8cc297d9bb75cb97
+drwx------ 4 root root 4.0K Mar  4 22:48 39a81f4cea9957d790c1fb061d58654b1819cfbd0d95ff0f5b0682d9c80f3512
+drwx------ 4 root root 4.0K Mar  4 22:48 8c5506e531a88e9a37827c5ef1bf1d1657ecc2397b7ca5205b9fe18fb23baba7
+drwx------ 3 root root 4.0K Mar  4 22:48 196271585a947d23fac05d24a31b5c9b7165162d0cdd3cdb3ec7cc32026c131a
+drwx------ 4 root root 4.0K Mar  4 22:48 68bf2b830852cd73e6218b97bc36072be294e2becb22a04b2f5d481bb8879100
+drwx------ 4 root root 4.0K Mar  4 22:48 9651a9aea9ca4cf115509afec1b7faabc752a497c8fd04a194c19a75482391ef
+drwx------ 4 root root 4.0K Mar  4 22:48 88f5d629b83088803da531ae2d0de8775ed48a968408459e775fc8cf6c539e8f
+drwx------ 4 root root 4.0K Mar  4 22:48 29bdf8d0570e4861849aa302427b75ba9079c215f40dd164b2b7ebd0d1fd185c
+drwx------ 4 root root 4.0K Mar  4 22:48 79177419af648bc93fdb4c2d810b9b4fbd095fb19e17686439dca9db79fce837
+drwx------ 4 root root 4.0K Mar  4 22:48 2f23591a1465270a896720115110e1ec38ce0f54a49429bb3619b4f3282d7e3d
+drwx------ 4 root root 4.0K Mar  4 22:49 715f477123fc1126e56b77123cd2db382879e2884059192b2458e640105536c7
+drwx------ 4 root root 4.0K Mar  4 22:49 752948ba0e355b37a716a2f3d781f2904df70aa22f69a0934a53099697d032a2
+drwx------ 4 root root 4.0K Mar  4 22:49 5b9a3d0168dec0255b88eef9b922f211cf440d09b47e923aa257bff3d5f5526a
+drwx------ 4 root root 4.0K Mar  4 22:53 a12c5bee640787a0a62c146d21b630bba94655d4b5e84d2ccfb13e93d97d98dc
+drwx------ 4 root root 4.0K Mar  4 22:55 4406cff67ba87e0dd49b6570302917ebdcda36fa90c8bb59d8539131ddfa3c68
+drwx------ 4 root root 4.0K Mar  4 22:55 7b3601bda332acc1c28e33224f587eadb17362392d5da91f7623a7ab6b1c6a24
+drwx------ 4 root root 4.0K Mar  4 22:56 8435f9019e2b13afb82739c0243eaa392390c2213da3a82380a176d6aacabd9b
+drwx------ 4 root root 4.0K Mar  4 22:57 ff95367a650c14da59bee135d794dae6a66023335e8a5b362db5448c32f6bf2f
+drwx------ 4 root root 4.0K Mar  4 22:59 a9277ada71cd98f23063eca6819fc350bda026610440b2823be26952e79f0415
+drwx------ 4 root root 4.0K Mar  4 22:59 3ca76cdcf2d15e693e6d1bfad5ec9fc25e02563b67b4485f6bf9434501b97d2c
+drwx------ 4 root root 4.0K Mar  4 22:59 695469da6e2d706f15fd40270f531ee5d970d9c4a886553cef341885dfd27ddb
+drwx------ 4 root root 4.0K Mar  4 22:59 062adb70b5e369d434a7e83e0c9aeddd36cfa479bf96b7a7b6d33cf11e96833b
+drwx------ 4 root root 4.0K Mar  4 22:59 d8127a01e083f0a2e13ecee5a4a342d925b72c4e9de364da5c43eb3eccc1b876
+drwx------ 4 root root 4.0K Mar  4 22:59 45d9e1bddea3a86de6c2f7da6ab0b6c4905ed68089e04f008b46a1dfad0916b6
+drwx------ 4 root root 4.0K Mar  4 22:59 494c1e04ea4204c3e39a8a41b9e3a108b3a27f68485960e9536b3fc2fd1f6a9f
+drwx------ 4 root root 4.0K Mar  4 22:59 3b602f3e430c940161c2dc51486318f4e9b52c93ba3a2f8a72561fd4cd5decb2
+drwx------ 4 root root 4.0K Mar  4 22:59 8df775c59274206ca86516d9edd211e8a50b87882c7c26ff9f1a74b4c6e03dbb
+drwx------ 4 root root 4.0K Mar  4 22:59 bd8bcd3c02d9df083351baf5309c7c76cdedc90fabae8e43cfb4f25925d1a089
+drwx------ 4 root root 4.0K Mar  4 23:00 c1319bc29b7372d1a1d2f9f69d329c042ff82d0dec130d51f227152764f55f05
+drwx------ 4 root root 4.0K Mar  4 23:10 2e2dbe42e4beabba035abbd8b1b99c913cd5be4d048d2112bd0d4228b7472f32
+drwx------ 4 root root 4.0K Mar  4 23:27 349c147351ae2542a349c79ea624a924e72869c81f1640ed34dedfc89131850d-init
+drwx------ 4 root root 4.0K Mar  4 23:27 c9d43889e8a31609cd81bd99f9f1275d4f138812115071024fb429d85f234ac0-init
+drwx------ 5 root root 4.0K Mar  4 23:27 349c147351ae2542a349c79ea624a924e72869c81f1640ed34dedfc89131850d
+drwx------ 5 root root 4.0K Mar  4 23:27 c9d43889e8a31609cd81bd99f9f1275d4f138812115071024fb429d85f234ac0
+drwx------ 4 root root 4.0K Mar  4 23:27 3b398170f961f4996021c62c5ea815e91f05ba945fde9850902d8567bbce28ce-init
+drwx------ 2 root root 4.0K Mar  4 23:27 l
+drwx------ 5 root root 4.0K Mar  4 23:27 3b398170f961f4996021c62c5ea815e91f05ba945fde9850902d8567bbce28ce
+
+imagens criadas a pouco
+
+root@menegidio-test:/var/lib/docker/overlay2# docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+machado-docker_machado         latest              5afbf92f832b        27 minutes ago      1.26GB
+machado-docker_elasticsearch   latest              f00f8d903e91        About an hour ago   590MB
+ubuntu                         bionic              329ed837d508        26 hours ago        63.3MB
+postgres                       12                  85f1c84fe307        2 weeks ago         314MB
+openjdk                        8                   9324460525ca        3 weeks ago         514MB
+root@menegidio-test:/var/lib/docker/overlay2#
+
+arquivos cirados dia 04/03
+
+machado@menegidio-test:~/machado-docker$ cd machado-docker/
+machado@menegidio-test:~/machado-docker/machado-docker$ ls -ltrh
+total 60K
+-rw-rw-r-- 1 machado machado 4.2K Mar  4 22:12 README.md
+-rw-rw-r-- 1 machado machado  35K Mar  4 22:12 LICENSE
+drwxrwxr-x 3 machado machado 4.0K Mar  4 22:12 data
+-rw-rw-r-- 1 machado machado 1.2K Mar  4 22:12 load_machadosample.sh
+drwxrwxr-x 4 machado machado 4.0K Mar  4 22:12 images
+-rw-rw-r-- 1 machado machado 1.5K Mar  4 22:12 docker-compose.yml
+machado@menegidio-test:~/machado-docker/machado-docker$ cd images/
+machado@menegidio-test:~/machado-docker/machado-docker/images$ ls -ltrh
+total 8.0K
+drwxrwxr-x 3 machado machado 4.0K Mar  4 22:12 machado
+drwxrwxr-x 2 machado machado 4.0K Mar  4 22:12 elasticsearch
+machado@menegidio-test:~/machado-docker/machado-docker/images$ cd machado/
+machado@menegidio-test:~/machado-docker/machado-docker/images/machado$ ls -ltrh
+total 20K
+-rw-rw-r-- 1 machado machado 5.2K Mar  4 22:12 wait-for-it.sh
+-rw-rw-r-- 1 machado machado 1.8K Mar  4 22:12 machado.Dockerfile
+drwxrwxr-x 2 machado machado 4.0K Mar  4 22:12 config
+-rw-rw-r-- 1 machado machado 1.1K Mar  4 22:12 build.sh
+machado@menegidio-test:~/machado-docker/machado-docker/images/machado$ cd ..
+machado@menegidio-test:~/machado-docker/machado-docker/images$ cd elasticsearch/
+machado@menegidio-test:~/machado-docker/machado-docker/images/elasticsearch$ ls -ltrh
+total 4.0K
+-rw-rw-r-- 1 machado machado 542 Mar  4 22:12 elasticsearch.Dockerfile
+machado@menegidio-test:~/machado-docker/machado-docker/images/elasticsearch$
+
