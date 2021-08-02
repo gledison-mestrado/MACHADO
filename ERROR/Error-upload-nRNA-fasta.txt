@@ -1,0 +1,111 @@
+***
+
+machado@machado:~/machado-docker$ docker-compose exec machado python manage.py load_feature_sequence --file data/sample/genomes/PB18/mRNA/GCF_000150735.1_Paracocci_br_Pb18_V2_genomic_utf-8.fna --soterm mRNA
+Processing file: GCF_000150735.1_Paracocci_br_Pb18_V2_genomic_utf-8.fna
+Loading
+  0%|                                                    | 0/56 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/common.py", line 185, in retrieve_feature_id
+    feature__type__name=soterm,
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/query.py", line 431, in get
+    self.model._meta.object_name
+machado.models.DoesNotExist: FeatureDbxref matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/sequence.py", line 118, in add_sequence_to_feature
+    feature_id = retrieve_feature_id(accession=seq_obj.id, soterm=soterm)
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/common.py", line 188, in retrieve_feature_id
+    raise ObjectDoesNotExist("{} {} does not exist".format(soterm, accession))
+django.core.exceptions.ObjectDoesNotExist: mRNA NW_011371359.1 does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    main()
+  File "manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/__init__.py", line 395, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/base.py", line 330, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/base.py", line 371, in execute
+    output = self.handle(*args, **options)
+  File "/usr/local/lib/python3.6/dist-packages/machado/management/commands/load_feature_sequence.py", line 66, in handle
+    if task.result():
+  File "/usr/lib/python3.6/concurrent/futures/_base.py", line 425, in result
+    return self.__get_result()
+  File "/usr/lib/python3.6/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/sequence.py", line 120, in add_sequence_to_feature
+    raise ImportingError("The feature {} does NOT exist.".format(seq_obj.id))
+machado.loaders.exceptions.ImportingError: The feature NW_011371359.1 does NOT exist.
+machado@machado:~/machado-docker$
+
+***
+
+machado@machado:~/machado-docker$ docker-compose exec machado python manage.py load_feature_sequence --file data/sample/genomes/PB18/mRNA/Pb18-ParaDB-mRNA-fasta_UTF-8.fna --soterm mRNA
+Processing file: Pb18-ParaDB-mRNA-fasta_UTF-8.fna
+Loading
+  0%|                                                  | 0/8389 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/common.py", line 185, in retrieve_feature_id
+    feature__type__name=soterm,
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/query.py", line 431, in get
+    self.model._meta.object_name
+machado.models.DoesNotExist: FeatureDbxref matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/sequence.py", line 118, in add_sequence_to_feature
+    feature_id = retrieve_feature_id(accession=seq_obj.id, soterm=soterm)
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/common.py", line 188, in retrieve_feature_id
+    raise ObjectDoesNotExist("{} {} does not exist".format(soterm, accession))
+django.core.exceptions.ObjectDoesNotExist: mRNA XM_010757861.1::NW_011371358.1:8900-9745(+) does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    main()
+  File "manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/__init__.py", line 395, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/base.py", line 330, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/management/base.py", line 371, in execute
+    output = self.handle(*args, **options)
+  File "/usr/local/lib/python3.6/dist-packages/machado/management/commands/load_feature_sequence.py", line 66, in handle
+    if task.result():
+  File "/usr/lib/python3.6/concurrent/futures/_base.py", line 425, in result
+    return self.__get_result()
+  File "/usr/lib/python3.6/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/machado/loaders/sequence.py", line 120, in add_sequence_to_feature
+    raise ImportingError("The feature {} does NOT exist.".format(seq_obj.id))
+machado.loaders.exceptions.ImportingError: The feature XM_010757861.1::NW_011371358.1:8900-9745(+) does NOT exist.
+^CError in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/concurrent/futures/thread.py", line 40, in _python_exit
+    t.join()
+  File "/usr/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/usr/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
