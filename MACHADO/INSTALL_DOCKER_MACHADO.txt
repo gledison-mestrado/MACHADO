@@ -1,0 +1,65 @@
+*** CREATE VM
+DISk 40GB
+mem 2gb
+install VM ubuntu
+
+sudo apt-get update
+sudo apt-get upgrade
+
+*** CRIAR USER
+
+sudo adduser machado
+passwd machado
+sudo su - machado
+
+*** INSTALL DOCKER
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt install docker-ce
+sudo systemctl status docker
+sudo docker ps
+
+*** INSTALL DOCKER-COMPOSE
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+sudo usermod -aG docker $USER
+
+*** INSTALL MACHADO
+
+git clone https://github.com/lmb-embrapa/machado-docker.git
+cd machado-docker
+
+
+mkdir ./data/pgdata
+mkdir ./data/ecdata
+mkdir ./data/jbdata
+
+*** EDIT .env
+
+edit o .env with user of the database and user use machado 
+
+UID=1000
+USER=machado
+POSTGRES_DB=machadosample
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+MACHADO_SOURCE=https://github.com/lmb-embrapa/machado.git
+MACHADO_PROJECT=machadosample
+
+*** CONFIG MEMORY
+
+/etc/sysctl.conf
+vm.max_map_count=262144
+
+*** RESTART MACHINE
+
+init 6
+
+*** START MACHADO
+
+cd machado-docker
+nohup docker-compose up --build --force-recreate &
